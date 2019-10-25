@@ -78,7 +78,7 @@ setInterval(()=>{
 
 					airplaneTouch()
 
-},10) 
+},15) 
 
 
 
@@ -276,7 +276,7 @@ let gravityCheck = setInterval(()=> {
 		foxJumpCheck = true;
 	}
 
-},10)
+},15)
 
 function gravity(){
 
@@ -305,7 +305,7 @@ function gravity(){
 				foxJumpCheck = true
 				fox.src = foxXoba[0]
 			}	
-			},10)
+			},15)
 		
 		
 } 
@@ -364,7 +364,7 @@ function foxJump(){
 					speedJump--
 					foxJump()
 				}
-			},10)
+			},15)
 		}
 		else{
 			 gravityCheck = setInterval(()=> {
@@ -374,7 +374,7 @@ function foxJump(){
 					fox.src = foxXoba[2]
 				}
 				
-			},10)
+			},15)
 		}
 	
 }
@@ -417,7 +417,7 @@ document.addEventListener('keydown', function(e) {
 		direction = -1;
 		foxStepLeft = true
 	
-		foxStepPlay = setInterval(foxStep,10);
+		foxStepPlay = setInterval(foxStep,15);
 		foxXoba = ["img/foxxoba/foxxobaLeft1.png","img/foxxoba/foxxobaLeft2.png","img/foxxoba/foxxobaLeft3.png"]
 		foxStepSrc[0].src = 'img/fox/foxLeft1.png'
 		foxStepSrc[1].src = 'img/fox/foxLeft2.png'
@@ -428,7 +428,7 @@ document.addEventListener('keydown', function(e) {
 	if (e.keyCode == 39 && !foxStepRight && !foxStepLeft) {
 		direction = 1;
 		foxStepRight = true 
-		foxStepPlay = setInterval(foxStep,10);
+		foxStepPlay = setInterval(foxStep,15);
 		foxXoba = ["img/foxxoba/foxxobaRight1.png","img/foxxoba/foxxobaRight2.png","img/foxxoba/foxxobaRight3.png"]
 		foxStepSrc[0].src = 'img/fox/foxRight1.png'
 		foxStepSrc[1].src = 'img/fox/foxRight2.png'
@@ -517,7 +517,7 @@ jumpTd.addEventListener('mousedown',()=>{
 rightTd.addEventListener('click',()=>{
 		clearInterval(foxStepPlay)
 		foxStepPlay = null
-		foxStepPlay = setInterval(foxStep,10)
+		foxStepPlay = setInterval(foxStep,15)
 		direction = 1;
 		foxXoba = ["img/foxxoba/foxxobaRight1.png","img/foxxoba/foxxobaRight2.png","img/foxxoba/foxxobaRight3.png"]
 		foxStepSrc[0].src = 'img/fox/foxRight1.png'
@@ -527,7 +527,7 @@ rightTd.addEventListener('click',()=>{
 leftTd.addEventListener('click',()=>{
 		clearInterval(foxStepPlay)
 		foxStepPlay = null
-		foxStepPlay = setInterval(foxStep,10)
+		foxStepPlay = setInterval(foxStep,15)
 		direction = -1;
 		foxXoba = ["img/foxxoba/foxxobaLeft1.png","img/foxxoba/foxxobaLeft2.png","img/foxxoba/foxxobaLeft3.png"]
 		foxStepSrc[0].src = 'img/fox/foxLeft1.png'
