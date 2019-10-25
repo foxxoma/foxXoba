@@ -1,0 +1,44 @@
+.parent {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    align-content: center; 
+    justify-content: center; 
+    overflow: auto; 
+    background-color: black;  
+}
+
+
+
+.canvas{
+        display: block;
+        border: none;
+}
+
+.hp{
+    position: absolute;
+    bottom: 0%;
+    right: 0%;
+    font-size: 50px;
+    color: #fff;
+    border: 1px solid red;
+}
+
+.audio{
+    width: 100px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    
+}
+.timer{
+    position: absolute;
+    top: 0%;
+    right: 0%;
+    font-size: 30px;
+    color: #fff;
+}
