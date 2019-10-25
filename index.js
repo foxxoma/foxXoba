@@ -496,3 +496,32 @@ const timerRun = setInterval(() => {
 		timer.textContent =  m +':'+ s
 	}
 }, 1000);
+
+
+jumpTd.addEventListener('click',()=>{
+		speedJump = 5
+		foxJump()
+		clearInterval(gravityCheck);
+		fox.src = foxXoba[1]
+})
+
+rightTd.addEventListener('click',()=>{
+		clearInterval(foxStepPlay)
+		foxStepPlay = null
+		foxStepPlay = setInterval(foxStep,10)
+		direction = 1;
+		foxXoba = ["img/foxxoba/foxxobaRight1.png","img/foxxoba/foxxobaRight2.png","img/foxxoba/foxxobaRight3.png"]
+		foxStepSrc[0].src = 'img/fox/foxRight1.png'
+		foxStepSrc[1].src = 'img/fox/foxRight2.png'
+})
+
+leftTd.addEventListener('click',()=>{
+		clearInterval(foxStepPlay)
+		foxStepPlay = null
+		foxStepPlay = setInterval(foxStep,10)
+		direction = -1;
+		foxXoba = ["img/foxxoba/foxxobaLeft1.png","img/foxxoba/foxxobaLeft2.png","img/foxxoba/foxxobaLeft3.png"]
+		foxStepSrc[0].src = 'img/fox/foxLeft1.png'
+		foxStepSrc[1].src = 'img/fox/foxLeft2.png'
+})
+
