@@ -28,6 +28,7 @@ let airplaneBreak = false;
 let airplaneSrc = []
 airplaneCount = 2
 setInterval(()=>{
+	onGround()
 	if(airplaneCount > 0){
 		let r = Math.floor(Math.random() * (370 - 10) + 10)
 		let obgAirplane = {src:'img/airplane.png', x: 800, y:r}
@@ -274,9 +275,11 @@ let gravityCheck = setInterval(()=> {
 	}else{
 		foxJumpCheck = true;
 	}
+
 },10)
 
 function gravity(){
+
 	let j = 10
 		
 			gravityPlay  = setInterval(function(){
@@ -378,7 +381,7 @@ function foxJump(){
 
 
 let ground = true
-setInterval(() => {
+function onGround() {
 	ground = false
 	
 	ground = platformSrc.some((e)=>{
@@ -390,7 +393,7 @@ setInterval(() => {
 		airplaneSpeed = 1.5
 	}
 
-}, 10);
+}
 
 
 
@@ -509,68 +512,24 @@ jumpTd.addEventListener('mousedown',()=>{
 	}
 })
 
-rightTd.addEventListener('mousedown',()=>{
-		if (!foxStepRight && !foxStepLeft) {
+
+
+rightTd.addEventListener('click',()=>{
+		clearInterval(foxStepPlay)
+		foxStepPlay = null
+		foxStepPlay = setInterval(foxStep,10)
 		direction = 1;
-		foxStepRight = true 
-		foxStepPlay = setInterval(foxStep,10);
 		foxXoba = ["img/foxxoba/foxxobaRight1.png","img/foxxoba/foxxobaRight2.png","img/foxxoba/foxxobaRight3.png"]
 		foxStepSrc[0].src = 'img/fox/foxRight1.png'
 		foxStepSrc[1].src = 'img/fox/foxRight2.png'
-
-		airplaneSpeed = 2
-	}
-	else if(!foxStepRight && foxStepLeft){
-		direction = 1
-		foxStepRight = true
-		foxStepLeft = false
-		foxXoba = ["img/foxxoba/foxxobaRight1.png","img/foxxoba/foxxobaRight2.png","img/foxxoba/foxxobaRight3.png"]
-		foxStepSrc[0].src = 'img/fox/foxRight1.png'
-		foxStepSrc[1].src = 'img/fox/foxRight2.png'
-
-		airplaneSpeed = 2
-	}
 })
 
-leftTd.addEventListener('mousedown',()=>{
-		if (!foxStepLeft && !foxStepRight){
+leftTd.addEventListener('click',()=>{
+		clearInterval(foxStepPlay)
+		foxStepPlay = null
+		foxStepPlay = setInterval(foxStep,10)
 		direction = -1;
-		foxStepLeft = true
-	
-		foxStepPlay = setInterval(foxStep,10);
 		foxXoba = ["img/foxxoba/foxxobaLeft1.png","img/foxxoba/foxxobaLeft2.png","img/foxxoba/foxxobaLeft3.png"]
 		foxStepSrc[0].src = 'img/fox/foxLeft1.png'
 		foxStepSrc[1].src = 'img/fox/foxLeft2.png'
-		
-
-		airplaneSpeed = 1
-	}
-	else if(foxStepRight && !foxStepLeft){
-		direction = -1
-		foxStepLeft = true
-		foxStepRight = false
-		foxXoba = ["img/foxxoba/foxxobaLeft1.png","img/foxxoba/foxxobaLeft2.png","img/foxxoba/foxxobaLeft3.png"]
-		foxStepSrc[0].src = 'img/fox/foxLeft1.png'
-		foxStepSrc[1].src = 'img/fox/foxLeft2.png'
-
-		airplaneSpeed = 1
-	}
 })
-
-leftTd.addEventListener('mouseup', ()=> {
-		if (foxStepLeft) {
-		clearInterval(foxStepPlay);
-		foxStepPlay = null
-		foxStepLeft = false
-	}
-	
-});
-rightTd.addEventListener('mouseup', ()=> {
-		if (foxStepRight) {
-		clearInterval(foxStepPlay);
-		foxStepPlay = null
-		foxStepRight = false
-	}
-	
-});
-
