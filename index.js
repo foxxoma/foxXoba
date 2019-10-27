@@ -368,7 +368,7 @@ function onGround() {
 	ground = false
 	
 	ground = platformSrc.some((e)=>{
-	return Math.abs(e.y - 50 - yFox)<3 && Math.abs(e.x - xFox)<40 || Math.abs(canvas.height - 50 - yFox)<3
+	return Math.abs(e.y - 50 - yFox)<3 && Math.abs(e.x - xFox)<40 || Math.abs(canvas.height - 50 - yFox)<4
 	})
   	if(ground && jumpSmartfon){
   		jumpSmartfon = 1
