@@ -291,7 +291,7 @@ function gravity(){
 				foxJumpCheck = true
 				fox.src = foxXoba[0]
 			}	
-			},10)
+			},8)
 		
 		
 } 
@@ -347,7 +347,7 @@ function foxJump(){
 					speedJump--
 					foxJump()
 				}
-			},10)
+			},8)
 		}
 		else{
 			 gravityCheck = setInterval(()=> {
@@ -488,25 +488,28 @@ const timerRun = setInterval(() => {
 
 jumpTd.addEventListener('click',async ()=>{
 		if (jumpSmartfon == 1 && smartfon){
+			speedJump = 5
+			foxJump()
+		
 		setTimeout(()=>{jumpSmartfon++}, 10);
 		
-		await clearInterval(gravityPlay);
+		 clearInterval(gravityPlay);
 		 gravityPlay = null
-		await clearInterval(gravityCheck);
+		 clearInterval(gravityCheck);
 		 gravityCheck = null
 		 fox.src = foxXoba[1]
-		 speedJump = 5
-		 foxJump()
+		 
 	}
 	else if (jumpSmartfon == 2 && smartfon && gravityPlay){
 		jumpSmartfon++
-		await clearInterval(gravityPlay);
+		speedJump = 5
+		 foxJump()
+		clearInterval(gravityPlay);
 		 gravityPlay = null
-		await clearInterval(gravityCheck);
+		clearInterval(gravityCheck);
 		 gravityCheck = null
 		 fox.src = foxXoba[1]
-		 speedJump = 5
-		 foxJump()
+		 
 	}
 
 })
