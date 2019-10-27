@@ -37,7 +37,7 @@ let airplaneBreak = false;
 let airplaneSrc = []
 airplaneCount = 2
 setInterval(()=>{
-	onGround()
+	
 	if(airplaneCount > 0){
 		let r = Math.floor(Math.random() * (370 - 10) + 10)
 		let obgAirplane = {src:'img/airplane.png', x: 800, y:r}
@@ -259,6 +259,7 @@ let speedGravity = 0;
 let fallRate = 1;
 
 let gravityCheck = setInterval(()=> {
+
 	if(!ground && !gravityPlay){
 		
 		speedGravity = 0;
@@ -268,7 +269,7 @@ let gravityCheck = setInterval(()=> {
 		foxJumpCheck = true;
 	}
 
-},10)
+},8)
 
 function gravity(){
 
@@ -367,7 +368,7 @@ function foxJump(){
 
 
 let ground = true
-function onGround() {
+setInterval(()=> {
 	ground = false
 	
 	ground = platformSrc.some((e)=>{
@@ -381,8 +382,7 @@ function onGround() {
 		airplaneSpeed = 1.5
 	}
 
-}
-
+},8)
 
 
 
