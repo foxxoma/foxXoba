@@ -3,6 +3,13 @@ const canv = document.getElementById('canvas');
 const timer = document.getElementById('timer')
 ctx = canv.getContext('2d');
 
+
+let smartfon = false;
+
+
+
+
+
 let speedStepC = 0;
 
 let direction = 1;
@@ -36,7 +43,7 @@ setInterval(()=>{
 		airplaneCount--
 	}
 	for(let i = 0; i< airplaneSrc.length; i++){	
-			airplane.src = airplaneSrc[i].src
+			//airplane.src = airplaneSrc[i].src
 			airplaneSrc[i].x -= 2 * airplaneSpeed
 			if(airplaneSrc[i].x < -50){
 				airplaneSrc.splice(0)
@@ -53,7 +60,7 @@ setInterval(()=>{
 		candyCount--
 	}
 	for(let i = 0; i< candySrc.length; i++){	
-			candy.src = candySrc[i].src
+			//candy.src = candySrc[i].src
 			if(candySrc[candySrc.length - 1].x < -50){
 				candyCount = 1
 			}
@@ -79,14 +86,14 @@ setInterval(()=>{
 
 function airplaneDraw(){
 	for(let i = 0; i< airplaneSrc.length; i++){	
-		airplane.src = airplaneSrc[i].src
+		//airplane.src = airplaneSrc[i].src
 		ctx.drawImage(airplane, airplaneSrc[i].x,airplaneSrc[i].y, 50, 30)	
 	}
 }
 
 function candyDraw(){
 	for(let i = 0; i< candySrc.length; i++){	
-		candy.src = candySrc[i].src
+		//candy.src = candySrc[i].src
 		ctx.drawImage(candy, candySrc[i].x,candySrc[i].y, 30, 38)	
 	}
 }
@@ -123,7 +130,7 @@ let platformSrc = [
 function platformDraw(){
 	for(let i = 0; i< platformSrc.length; i++){
 		if(platformSrc[i].x > -50  && platformSrc[i].x < 800){
-		platform.src = platformSrc[i].src
+		//platform.src = platformSrc[i].src
 		
 		ctx.drawImage(platform, platformSrc[i].x, platformSrc[i].y, 50, 50)
 		}
@@ -146,13 +153,13 @@ yFox = canv.height - 50
 
 
 const bg = new Image()
-bg.src = "img/bg.jpg";
+bg.src = "img/bg.jpg"
 
 
 
 
 const candy = new Image()
-
+candy.src = 'img/candy.png'
 
 
 const fox = new Image()
@@ -163,12 +170,12 @@ fox.src = foxStepSrc[0].src
 
 
 const platform = new Image()
-
+platform.src = 'img/platform.png'
 
 
 
 const airplane = new Image()
-
+airplane.src = 'img/airplane.png'
 
 
 
@@ -199,7 +206,7 @@ if (speedStepC % 20 == 0){
 if(xFox >= canv.width/2 - 40){
 	for(let i = 0; i< platformSrc.length; i++){
 		if(platformSrc[i].x > -50  && platformSrc[i].x < 800){
-		platform.src = platformSrc[i].src
+		//platform.src = platformSrc[i].src
 		platformSrc[i].x -= 2 * direction
 	}else{
 		platformSrc[i].x -= 2 * direction;
@@ -223,7 +230,7 @@ if(platformSrc[platformSrc.length-1].x < canv.width - 100){
 	}
 	if(xFox >= canv.width/2 - 40){
 	for(let i = 0; i< candySrc.length; i++){	
-		candy.src = candySrc[i].src
+		//candy.src = candySrc[i].src
 		candySrc[i].x -=2 * direction
 	}
 }
@@ -477,8 +484,8 @@ const timerRun = setInterval(() => {
 }, 1000);
 
 
-jumpTd.addEventListener('mousedown',()=>{
-		if (foxJumpCheck && ground){
+jumpTd.addEventListener('click',()=>{
+		if (foxJumpCheck && ground && smartfon){
 
 		speedJump = 5
 		foxJump()
@@ -491,6 +498,7 @@ jumpTd.addEventListener('mousedown',()=>{
 
 
 rightTd.addEventListener('click',()=>{
+	if(smartfon){
 		clearInterval(foxStepPlay)
 		foxStepPlay = null
 		foxStepPlay = setInterval(foxStep,10)
@@ -498,9 +506,11 @@ rightTd.addEventListener('click',()=>{
 		foxXoba = ["img/foxxoba/foxxobaRight1.png","img/foxxoba/foxxobaRight2.png","img/foxxoba/foxxobaRight3.png"]
 		foxStepSrc[0].src = 'img/fox/foxRight1.png'
 		foxStepSrc[1].src = 'img/fox/foxRight2.png'
+	}
 })
 
 leftTd.addEventListener('click',()=>{
+	if(smartfon){
 		clearInterval(foxStepPlay)
 		foxStepPlay = null
 		foxStepPlay = setInterval(foxStep,10)
@@ -508,6 +518,7 @@ leftTd.addEventListener('click',()=>{
 		foxXoba = ["img/foxxoba/foxxobaLeft1.png","img/foxxoba/foxxobaLeft2.png","img/foxxoba/foxxobaLeft3.png"]
 		foxStepSrc[0].src = 'img/fox/foxLeft1.png'
 		foxStepSrc[1].src = 'img/fox/foxLeft2.png'
+	}
 })
 
 
@@ -519,3 +530,9 @@ setInterval(function(){
 	candyDraw()
 	airplaneDraw()
 },10)
+
+if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+	// код для мобильных устройств
+	smartfon = true;
+} 
+	
