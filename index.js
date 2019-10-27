@@ -5,8 +5,7 @@ ctx = canv.getContext('2d');
 
 
 let smartfon = false;
-
-
+let jumpSmartfon = 1
 
 
 
@@ -280,6 +279,7 @@ function gravity(){
 					
 				}else{
 					clearInterval(gravityPlay)
+					gravityPlay = null
 					if(speedGravity < 5){
 					speedGravity++
 					}
@@ -370,9 +370,11 @@ function onGround() {
 	ground = platformSrc.some((e)=>{
 	return Math.abs(e.y - 50 - yFox)<3 && Math.abs(e.x - xFox)<40 || Math.abs(canvas.height - 50 - yFox)<3
 	})
+  	if(ground && jumpSmartfon){
+  		jumpSmartfon = 1
+  	}
 
-
-	if (!foxStepRight && !foxStepLeft){
+	if (!foxStepRight && !foxStepLeft && !smartfon){
 		airplaneSpeed = 1.5
 	}
 
@@ -484,20 +486,34 @@ const timerRun = setInterval(() => {
 }, 1000);
 
 
-jumpTd.addEventListener('click',()=>{
-		if (foxJumpCheck && ground && smartfon){
-
-		speedJump = 5
-		foxJump()
-		clearInterval(gravityCheck);
-		fox.src = foxXoba[1]
+jumpTd.addEventListener('click',async ()=>{
+		if (jumpSmartfon == 1 && smartfon){
+		setTimeout(()=>{jumpSmartfon++}, 10);
 		
+		await clearInterval(gravityPlay);
+		 gravityPlay = null
+		await clearInterval(gravityCheck);
+		 gravityCheck = null
+		 fox.src = foxXoba[1]
+		 speedJump = 5
+		 foxJump()
 	}
+	else if (jumpSmartfon == 2 && smartfon && gravityPlay){
+		jumpSmartfon++
+		await clearInterval(gravityPlay);
+		 gravityPlay = null
+		await clearInterval(gravityCheck);
+		 gravityCheck = null
+		 fox.src = foxXoba[1]
+		 speedJump = 5
+		 foxJump()
+	}
+
 })
 
 
 
-rightTd.addEventListener('click',()=>{
+rightTd.addEventListener('click', ()=>{
 	if(smartfon){
 		clearInterval(foxStepPlay)
 		foxStepPlay = null
@@ -506,6 +522,8 @@ rightTd.addEventListener('click',()=>{
 		foxXoba = ["img/foxxoba/foxxobaRight1.png","img/foxxoba/foxxobaRight2.png","img/foxxoba/foxxobaRight3.png"]
 		foxStepSrc[0].src = 'img/fox/foxRight1.png'
 		foxStepSrc[1].src = 'img/fox/foxRight2.png'
+		airplaneSpeed = 2 
+
 	}
 })
 
@@ -518,6 +536,7 @@ leftTd.addEventListener('click',()=>{
 		foxXoba = ["img/foxxoba/foxxobaLeft1.png","img/foxxoba/foxxobaLeft2.png","img/foxxoba/foxxobaLeft3.png"]
 		foxStepSrc[0].src = 'img/fox/foxLeft1.png'
 		foxStepSrc[1].src = 'img/fox/foxLeft2.png'
+		airplaneSpeed = 1
 	}
 })
 
@@ -533,6 +552,7 @@ setInterval(function(){
 
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
 	// код для мобильных устройств
-	smartfon = true;
+	smartfon = true
+	airplaneCount = 3
 } 
 	
