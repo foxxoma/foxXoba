@@ -68,12 +68,7 @@ setInterval(()=>{
 			}
 	}
 
-					ctx.clearRect(0, 0, canvas.width, canvas.height);
-					ctx.drawImage(bg, 0, 0, canv.width , canv.height);
-					platformDraw()
-					ctx.drawImage(fox, xFox, yFox, foxizeX, foxizeY );
-					candyDraw()
-					airplaneDraw()
+					
 					
 
 					airplaneTouch()
@@ -152,9 +147,7 @@ yFox = canv.height - 50
 
 const bg = new Image()
 bg.src = "img/bg.jpg";
-bg.onload = function() {
-	ctx.drawImage(bg, 0, 0, canv.width , canv.height);
-};
+
 
 
 
@@ -164,21 +157,13 @@ const candy = new Image()
 
 const fox = new Image()
 fox.src = foxStepSrc[0].src
-fox.onload = function() {
-	ctx.clearRect(0, 0, canvas.width, canvas.height)
-	ctx.drawImage(bg, 0, 0, canv.width , canv.height)
-	platformDraw()
-	ctx.drawImage(fox, xFox, yFox, foxizeX, foxizeY )
-	candyDraw()
-	airplaneDraw()
-	
-};
+
 
 
 
 
 const platform = new Image()
-platformDraw();
+
 
 
 
@@ -191,7 +176,7 @@ function foxStep(){
 	//speed cader
 	speedStepC++;
 	//clear
-	ctx.clearRect(0, 0, canvas.width, canvas.height)
+	
 	//step
 
 if(foxJumpCheck){
@@ -208,14 +193,14 @@ if (speedStepC % 20 == 0){
 }
 }
 	//background
-	ctx.drawImage(bg, 0, 0, canv.width , canv.height)
+
 
 	//platform
 if(xFox >= canv.width/2 - 40){
 	for(let i = 0; i< platformSrc.length; i++){
 		if(platformSrc[i].x > -50  && platformSrc[i].x < 800){
 		platform.src = platformSrc[i].src
-		ctx.drawImage(platform, platformSrc[i].x -= 2 * direction, platformSrc[i].y, 50, 50)
+		platformSrc[i].x -= 2 * direction
 	}else{
 		platformSrc[i].x -= 2 * direction;
 	}
@@ -229,24 +214,22 @@ if(platformSrc[platformSrc.length-1].x < canv.width - 100){
 				platformSrc.push(obgPlatform)
 }
 
-	platformDraw()
+	
 
 
 	//fox
 	if(xFox < canv.width/2 -40 ){
-	ctx.drawImage(fox, xFox+= 2 * direction, yFox, foxizeX, foxizeY )
-	}else{
-		ctx.drawImage(fox, xFox, yFox, foxizeX, foxizeY )
+	xFox+= 2 * direction
 	}
 	if(xFox >= canv.width/2 - 40){
 	for(let i = 0; i< candySrc.length; i++){	
 		candy.src = candySrc[i].src
-		ctx.drawImage(candy, candySrc[i].x -=2 * direction,candySrc[i].y, 30, 38)	
+		candySrc[i].x -=2 * direction
 	}
 }
 
-	candyDraw()
-	airplaneDraw()
+	
+	
 }
 	
 
@@ -285,12 +268,8 @@ function gravity(){
 			gravityPlay  = setInterval(function(){
 				if(!ground){
 				if(j-- > 0){
-					ctx.clearRect(0, 0, canvas.width, canvas.height);
-					ctx.drawImage(bg, 0, 0, canv.width , canv.height);
-					platformDraw()
-					ctx.drawImage(fox, xFox, yFox += speedGravity, foxizeX, foxizeY );
-					candyDraw()
-					airplaneDraw()
+					
+					yFox += speedGravity
 					
 				}else{
 					clearInterval(gravityPlay)
@@ -353,12 +332,9 @@ function foxJump(){
 		if(speedJump > 0){
 	 		foxJumpPlay = setInterval(function(){
 				if(j-- > 0){
-					ctx.clearRect(0, 0, canvas.width, canvas.height);
-					ctx.drawImage(bg, 0, 0, canv.width , canv.height);
-					platformDraw()
-					ctx.drawImage(fox, xFox, yFox -= speedJump, foxizeX, foxizeY );
-					candyDraw()
-					airplaneDraw()
+					
+					yFox -= speedJump
+
 				}else{
 					clearInterval(foxJumpPlay)
 					speedJump--
@@ -533,3 +509,13 @@ leftTd.addEventListener('click',()=>{
 		foxStepSrc[0].src = 'img/fox/foxLeft1.png'
 		foxStepSrc[1].src = 'img/fox/foxLeft2.png'
 })
+
+
+setInterval(function(){
+	ctx.clearRect(0, 0, canvas.width, canvas.height)
+	ctx.drawImage(bg, 0, 0, canv.width , canv.height)
+	platformDraw()
+	ctx.drawImage(fox, xFox, yFox, foxizeX, foxizeY )
+	candyDraw()
+	airplaneDraw()
+},10)
