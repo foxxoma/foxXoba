@@ -382,7 +382,7 @@ setInterval(()=> {
 		airplaneSpeed = 1.5
 	}
 
-},8)
+},6)
 
 
 
