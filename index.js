@@ -4,8 +4,6 @@ const timer = document.getElementById('timer')
 ctx = canv.getContext('2d')
 
 alert('Покормите разраба :333 (89188382438)')
-alert('На смартфонах двойной прыжок!!! может все таки покормите?')
-alert('-.- я запомнил -- а всем остальным блаааааааагодарю')
 
 let smartfon = false;
 let jumpSmartfon = 1
