@@ -48,15 +48,3 @@ table {
     height: 100%;
     position: fixed;
 }
-#jumpTd {
-	width: 60%;
-	height: 100%;
-}
-#leftTd {
-	width: 20%;
-	height: 100%;
-}
-#rightTd {
-	width: 20%;
-	height: 100%;
-}

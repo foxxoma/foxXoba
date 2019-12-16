@@ -3,7 +3,8 @@ const canv = document.getElementById('canvas')
 const timer = document.getElementById('timer')
 ctx = canv.getContext('2d')
 
-alert('Покормите разраба :333 (89188382438)')
+		let alertRandom = Math.floor(Math.random() * (30 - 0) + 0)
+        if(alertRandom == 7){alert('На покушац (89188382438) :3')}
 
 let smartfon = false;
 let jumpSmartfon = 1
@@ -34,6 +35,9 @@ let airplaneSpeed = 2;
 let airplaneBreak = false; 
 let airplaneSrc = []
 airplaneCount = 2
+
+
+
 setInterval(()=>{
 	
 	if(airplaneCount > 0){
@@ -486,8 +490,8 @@ const timerRun = setInterval(() => {
 	}
 }, 1000);
 
-
-jumpTd.addEventListener('click',async ()=>{
+document.addEventListener('mousedown', (e)=> {
+	if(e.clientX < canv.width/2){
 		if (jumpSmartfon == 1 && smartfon){
 			speedJump = 5
 			foxJump()
@@ -512,13 +516,11 @@ jumpTd.addEventListener('click',async ()=>{
 		 fox.src = foxXoba[1]
 		 
 	}
-
+	}
 })
-
-
-
-rightTd.addEventListener('click', ()=>{
-	if(smartfon){
+document.addEventListener('mousedown', (e)=> {
+	if(e.clientX < canv.width/2){
+		if(smartfon){
 		clearInterval(foxStepPlay)
 		foxStepPlay = null
 		foxStepPlay = setInterval(foxStep,10)
@@ -527,23 +529,9 @@ rightTd.addEventListener('click', ()=>{
 		foxStepSrc[0].src = 'img/fox/foxRight1.png'
 		foxStepSrc[1].src = 'img/fox/foxRight2.png'
 		airplaneSpeed = 2 
-
+		}
 	}
 })
-
-leftTd.addEventListener('click',()=>{
-	if(smartfon){
-		clearInterval(foxStepPlay)
-		foxStepPlay = null
-		foxStepPlay = setInterval(foxStep,10)
-		direction = -1;
-		foxXoba = ["img/foxxoba/foxxobaLeft1.png","img/foxxoba/foxxobaLeft2.png","img/foxxoba/foxxobaLeft3.png"]
-		foxStepSrc[0].src = 'img/fox/foxLeft1.png'
-		foxStepSrc[1].src = 'img/fox/foxLeft2.png'
-		airplaneSpeed = 1
-	}
-})
-
 
 setInterval(function(){
 	ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -558,5 +546,5 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
 	// код для мобильных устройств
 	smartfon = true
 	airplaneCount = 3
-} 
-	
+}
+	 
